@@ -1,5 +1,6 @@
 import {FilterValuesType, TaskStateType, TodoListType} from "../AppReducer";
 import {v1} from "uuid";
+import {todoListID1, todoListID2} from "./tl-reducer";
 
 export type RemoveTasksActionType = {
     type: 'REMOVE-TASK'
@@ -34,8 +35,7 @@ export type RemoveTodolistActionType = {
     type: 'REMOVE-TODOLIST',
     id: string
 }
-const todoListID1 = v1()
-const todoListID2 = v1()
+
 let initialState:TaskStateType={
     [todoListID1]: [
         {id: v1(), title: "js", isDone: true},

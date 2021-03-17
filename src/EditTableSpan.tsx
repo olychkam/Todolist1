@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import {TextField} from "@material-ui/core";
 
 type EditTableSpanPropsType = {
@@ -6,17 +6,18 @@ type EditTableSpanPropsType = {
     changeItem: (title: string) => void
 }
 
-export function EditTableSpan(props: EditTableSpanPropsType) {
+export const EditTableSpan=React.memo((props: EditTableSpanPropsType)=> {
+    console.log('editTable')
     const [editMode, setEditMode] = useState<boolean>(false)
     const [title, setTitle] = useState<string>(props.title);
-    const onEditMode = () => {
+    const onEditMode =() => {
         setEditMode(true)
     }
-    const offEditMode = () => {
+    const offEditMode = ( )=> {
         setEditMode(false)
         props.changeItem(title)
     }
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    const changeTitle =(e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
     const onKeyPressEditMode = (e:KeyboardEventInit) => {
@@ -32,4 +33,4 @@ export function EditTableSpan(props: EditTableSpanPropsType) {
                      onKeyPress={onKeyPressEditMode}/>
             : <span onDoubleClick={onEditMode}>{props.title}</span>
     )
-}
+})
